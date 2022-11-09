@@ -1,31 +1,26 @@
 import { useState } from 'react';
-import Button from "./components/Button";
+import ButtonDisplay from './components/ButtonDisplay';
 import Navbar from "./components/Navbar";
+import RacerClassDisplay from './components/RacerClassDisplay';
+import RacerDisplay from './components/RacerDisplay';
 
 
 function App() {
-    let myName = 'Brian';
-    let myCity = 'Chicago';
-    let buttons = [
-        {color: 'primary', step: 1},
-        {color: 'secondary', step: 10},
-        {color: 'success', step: 100},
-        {color: 'danger', step: 1000},
-    ]
+    const [myName, setMyName] = useState('Brian');
+    const [myCity, setMyCity ]= useState('Chicago');
 
-    const [count, setCount] = useState(0);
-
-    function handleClick(step){
-        setCount(count + step);
+    function updateUserInfo(userName, userHometown){
+        setMyName(userName);
+        setMyCity(userHometown);
     };
 
     return (
         <>
-            <Navbar name={myName} test={123} city={myCity}/>
+            <Navbar name={myName} city={myCity} updateUserInfo={updateUserInfo}/>
             <div className="container">
-                <h1>Hello World</h1>
-                <h4 className='text-center'>Count: {count}</h4>
-                {buttons.map((button, idx) => <Button color={button.color} step={button.step} key={idx} handleClick={handleClick}/>)}
+                <ButtonDisplay />
+                {/* <RacerDisplay /> */}
+                <RacerClassDisplay />
             </div>
         </>
     )
